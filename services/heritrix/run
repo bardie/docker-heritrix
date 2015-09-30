@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec /sbin/setuser ${HERITRIX_USER} ${HERITRIX_BIN_PATH}/heritrix --web-admin ${HERITRIX_ADMIN_USER}:${HERITRIX_ADMIN_PASS} --jobs-dir ${HERITRIX_JOBS_DIR} --web-bind-hosts ${HERITRIX_BIND_HOST} --web-port ${HERITRIX_ADMIN_PORT}
