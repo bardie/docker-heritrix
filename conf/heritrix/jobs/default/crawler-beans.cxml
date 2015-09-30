@@ -66,7 +66,7 @@ metadata.description=Basic crawl starting with useful defaults
     <prop key="seeds.textSource.value">
 
 # URLS HERE
-http://localhost.com
+CRAWL_DOMAINS
 
     </prop>
    </props>
@@ -78,7 +78,7 @@ http://localhost.com
        <property name="operatorContactUrl" value="[see override above]"/>
        <property name="jobName" value="[see override above]"/>
        <property name="description" value="[see override above]"/>
-       <property name="robotsPolicyName" value="ignore"/>
+       <property name="robotsPolicyName" value="ROBOTS_POLICY_NAME"/>
   <!-- <property name="operator" value=""/> -->
   <!-- <property name="operatorFrom" value=""/> -->
   <!-- <property name="organization" value=""/> -->
@@ -143,7 +143,7 @@ http://localhost.com
               # example.com
               # http://www.example.edu/path1/
               # +http://(org,example,
-              localhost.com
+              CRAWL_DOMAINS
              </value>
             </property> 
            </bean>
@@ -175,10 +175,7 @@ http://localhost.com
           <property name="listLogicalOr" value="true" />
           <property name="regexList">
              <list>
-               <value>.*context/bibliography/export/(bibtex|xml|tagged)/[0-9]+</value>
-               <value>.*contexte/bibliographie/export/(bibtex|xml|tagged)/[0-9]+</value>
-               <value>.*biblio/export/(bibtex|xml|tagged)/[0-9]+</value>
-               <value>.*author/[0-9]+\?sort\=.*</value>
+               REGEX_IGNORE_VALUES
              </list>
           </property>
     </bean>
@@ -374,11 +371,11 @@ http://localhost.com
   <!-- <property name="seedsRedirectNewSeeds" value="true" /> -->
  </bean>
  <bean id="disposition" class="org.archive.crawler.postprocessor.DispositionProcessor">
-  <property name="delayFactor" value="0.0" />
-  <property name="minDelayMs" value="100" />
-  <property name="respectCrawlDelayUpToSeconds" value="300" />
-  <property name="maxDelayMs" value="1000" />
-  <property name="maxPerHostBandwidthUsageKbSec" value="0" />
+  <property name="delayFactor" value="DELAY_FACTOR" />
+  <property name="minDelayMs" value="MIN_DELAY_MS" />
+  <property name="respectCrawlDelayUpToSeconds" value="RESPECT_CRAWL_DELAY_UP_TO_SECONDS" />
+  <property name="maxDelayMs" value="MAX_DELAY_MS" />
+  <property name="maxPerHostBandwidthUsageKbSec" value="MAX_PER_HOST_BANDWIDTH" />
  </bean>
  <!-- <bean id="rescheduler" class="org.archive.crawler.postprocessor.ReschedulingProcessor">
        <property name="rescheduleDelaySeconds" value="-1" />
@@ -406,8 +403,8 @@ http://localhost.com
  <!-- CRAWLCONTROLLER: Control interface, unifying context -->
  <bean id="crawlController" 
    class="org.archive.crawler.framework.CrawlController">
-  <property name="maxToeThreads" value="25" />
-  <property name="pauseAtStart" value="false" />
+  <property name="maxToeThreads" value="MAX_TOE_THREADS" />
+  <property name="pauseAtStart" value="PAUSE_AT_START" />
   <!-- <property name="runWhileEmpty" value="false" /> -->
   <!-- <property name="recorderInBufferBytes" value="524288" /> -->
   <!-- <property name="recorderOutBufferBytes" value="16384" /> -->
@@ -424,9 +421,9 @@ http://localhost.com
   <!-- <property name="queuePrecedencePolicy">
         <bean class="org.archive.crawler.frontier.precedence.BaseQueuePrecedencePolicy" />
        </property> -->
-  <property name="snoozeLongMs" value="5000" />
-  <property name="retryDelaySeconds" value="30" />
-  <property name="maxRetries" value="10" />
+  <property name="snoozeLongMs" value="SNOOZE_LONG_MS" />
+  <property name="retryDelaySeconds" value="RETRY_DELAY_SECONDS" />
+  <property name="maxRetries" value="MAX_CRAWL_RETRIES" />
   <!-- <property name="recoveryLogEnabled" value="true" /> -->
   <!-- <property name="maxOutlinks" value="6000" /> -->
   <!-- <property name="extractIndependently" value="false" /> -->
@@ -489,9 +486,9 @@ http://localhost.com
 <bean id='veryPolite' class='org.archive.spring.Sheet'>
  <property name='map'>
   <map>
-   <entry key='disposition.delayFactor' value='0'/>
-   <entry key='disposition.minDelayMs' value='500'/>
-   <entry key='disposition.maxDelayMs' value='1000'/>
+   <entry key='disposition.delayFactor' value='DISPOSITION_DELAY_FACTOR'/>
+   <entry key='disposition.minDelayMs' value='DISPOSITION_MIN_DELAY_MS'/>
+   <entry key='disposition.maxDelayMs' value='DISPOSITION_MAX_DELAY_MS'/>
    <entry key='disposition.respectCrawlDelayUpToSeconds' value='3600'/>
   </map>
  </property>
